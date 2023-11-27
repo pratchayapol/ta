@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  tailscale:
+    image: tailscale/tailscale:latest
+    privileged: true
+    network_mode: "host"
+    restart: always
+    volumes:
+      - /var/lib/tailscale:/var/lib/tailscale
+      - /var/run/tailscale:/var/run/tailscale
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    environment:
+      - TAILSCALE_AUTHKEY=tskey-auth-k1QtjB2CNTRL-6zStx9vdgMMqz2TShHQvMMAQ4ZpDgRVf
+      - TAILSCALE_TSMP=/var/run/tailscale/tailscaled.sock
